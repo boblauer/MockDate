@@ -1,0 +1,30 @@
+{
+  "name": "MockDate",
+  "version": "0.0.1",
+  "description": "A JavaScript mock Date object that can be used to change when \"now\" is.",
+  "main": "./src/mockdate.js",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-mocha": "~0.4.10",
+    "load-grunt-tasks": "~0.3.0"
+  },
+  "scripts": {
+    "test": "grunt mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boblauer/MockDate.git"
+  },
+  "keywords": [
+    "date",
+    "mock",
+    "test"
+  ],
+  "author": "Bob Lauer <rlauer@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/boblauer/MockDate/issues"
+  },
+  "homepage": "https://github.com/boblauer/MockDate"
+}
