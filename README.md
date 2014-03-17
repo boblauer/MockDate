@@ -2,6 +2,7 @@ MockDate
 ========
 
 A JavaScript Mock Date object that can be used to change when "now" is.
+
 [![Build Status](https://travis-ci.org/boblauer/MockDate.png)](https://travis-ci.org/boblauer/MockDate)
 
 ## Installation ##
@@ -66,4 +67,9 @@ new Date().toString() // "Fri Mar 03 2000 00:00:00 GMT-0600 (CST)"
 MockDate.reset();
 
 new Date().toString() // "Mon Mar 17 2014 18:08:44 GMT-0500 (CDT)"
+```
+
+## Test ##
+```javascript
+npm test
 ```
