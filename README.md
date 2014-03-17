@@ -2,7 +2,7 @@ MockDate
 ========
 
 A JavaScript Mock Date object that can be used to change when "now" is.
-
+[![Build Status](https://travis-ci.org/boblauer/MockDate.png)](https://travis-ci.org/boblauer/MockDate)
 
 ## Installation ##
 `npm install mockdate`
