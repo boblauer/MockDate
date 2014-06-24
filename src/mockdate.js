@@ -21,6 +21,10 @@
     return new MockDate().valueOf();
   };
 
+  MockDate.parse = function(dateString) {
+    return _Date.parse(dateString);
+  };
+
   MockDate.toString = function() {
     return _Date.toString();
   };
