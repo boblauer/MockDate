@@ -19,6 +19,10 @@ describe('MockDate', function() {
     assert.equal(Date.now(), new Date(mockDate).valueOf());
   });
 
+  it('should override Date.parse()', function() {
+    assert.equal('807926400000', Date.parse('Wed, 09 Aug 1995 00:00:00 GMT'));
+  });
+
   it('should allow mock dates to show up as real dates using instanceof', function() {
     assert.ok(new Date() instanceof Date);
   });
