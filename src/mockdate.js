@@ -12,6 +12,7 @@
   function MockDate(y, m, d, h, M, s, ms) {
     var date;
 
+    //various engines give an 'Invalid date' error it if you pass undefined parameters
     switch (arguments.length) {
 
       case 0:
