@@ -1,5 +1,11 @@
-var assert = chai.assert;
 
+//load tests in the browser or in nodejs
+if (typeof(process) === 'undefined') {
+  var assert = chai.assert;
+} else {
+  var assert = require('chai').assert;
+  var MockDate = require('..');
+}
 
 describe('MockDate', function() {
 
@@ -29,6 +35,18 @@ describe('MockDate', function() {
 
   it('should have the same toString as the native Date object does', function() {
     assert.equal(Date.toString(), nativeToString);
+  });
+
+  it('should still be able to create a specific date from a timestamp', function() {
+    var date = new Date(807926400000);
+    assert.equal('Wed, 09 Aug 1995 00:00:00 GMT', date.toUTCString());
+  });
+
+  it('should still be able to create a specific date', function() {
+    var locDate = new Date(1995, 7, 9);
+    var utcMs   = locDate.valueOf()-locDate.getTimezoneOffset()*60*1000;
+    var utcDate = new Date(utcMs);
+    assert.equal('Wed, 09 Aug 1995 00:00:00 GMT', utcDate.toUTCString());
   });
 
   it('should revert correctly', function() {

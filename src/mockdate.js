@@ -9,10 +9,51 @@
     , now   = null
     ;
 
-  function MockDate(date) {
-    if (date) return new _Date(date);
-    if (now) return new _Date(now);
-    return new _Date();
+  function MockDate(y, m, d, h, M, s, ms) {
+    var date;
+
+    switch (arguments.length) {
+
+      case 0:
+        if (now) {
+          date = new _Date(now);
+        } else {
+          date = new _Date();
+        }
+        break;
+
+      case 1:
+        date = new _Date(y);
+        break;
+
+      case 2:
+        date = new _Date(y, m);
+        break;
+
+      case 3:
+        date = new _Date(y, m, d);
+        break;
+
+      case 4:
+        date = new _Date(y, m, d, h);
+        break;
+
+      case 5:
+        date = new _Date(y, m, d, h, M);
+        break;
+
+      case 6:
+        date = new _Date(y, m, d, h, M, s);
+        break;
+
+      case 7:
+      default:
+        date = new _Date(y, m, d, h, M, s, ms);
+        break;
+
+    }
+
+    return date;
   }
 
   MockDate.UTC = _Date.UTC;

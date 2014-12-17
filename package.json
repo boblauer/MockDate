@@ -5,6 +5,7 @@
   "main": "./src/mockdate.js",
   "dependencies": {},
   "devDependencies": {
+    "chai": "^1.10.0",
     "grunt": "~0.4.2",
     "grunt-mocha": "~0.4.10",
     "load-grunt-tasks": "~0.3.0"
