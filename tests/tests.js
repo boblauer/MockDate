@@ -37,12 +37,19 @@ describe('MockDate', function() {
     assert.equal(Date.toString(), nativeToString);
   });
 
-  it('should still be able to create a specific date from a timestamp', function() {
+  it('should be able to create a specific date from a timestamp', function() {
     var date = new Date(807926400000);
     assert.equal('Wed, 09 Aug 1995 00:00:00 GMT', date.toUTCString());
   });
 
-  it('should still be able to create a specific date', function() {
+  it('should be able to create a specific date from year, month', function() {
+    var locDate = new Date(1995, 7);
+    var utcMs   = locDate.valueOf()-locDate.getTimezoneOffset()*60*1000;
+    var utcDate = new Date(utcMs);
+    assert.equal('Tue, 01 Aug 1995 00:00:00 GMT', utcDate.toUTCString());
+  });
+
+  it('should be able to create a specific date from year, month, date', function() {
     var locDate = new Date(1995, 7, 9);
     var utcMs   = locDate.valueOf()-locDate.getTimezoneOffset()*60*1000;
     var utcDate = new Date(utcMs);
