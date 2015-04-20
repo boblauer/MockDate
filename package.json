@@ -1,6 +1,6 @@
 {
   "name": "mockdate",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A JavaScript mock Date object that can be used to change when \"now\" is.",
   "main": "./src/mockdate.js",
   "dependencies": {},
