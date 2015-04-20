@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/boblauer/MockDate/issues"
   },
-  "homepage": "https://github.com/boblauer/MockDate"
+  "homepage": "https://github.com/boblauer/MockDate",
+  "spm": {
+    "main": "src/mockdate.js"
+  }
 }
