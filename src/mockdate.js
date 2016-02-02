@@ -15,7 +15,7 @@
     switch (arguments.length) {
 
       case 0:
-        if (now) {
+        if (now !== null) {
           date = new _Date(now);
         } else {
           date = new _Date();
