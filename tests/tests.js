@@ -56,6 +56,11 @@ describe('MockDate', function() {
     assert.equal('Wed, 09 Aug 1995 00:00:00 GMT', utcDate.toUTCString());
   });
 
+  it('should be able to create a date correctly from the epoch', function() {
+    MockDate.set(0);
+    assert.equal('Thu, 01 Jan 1970 00:00:00 GMT', new Date().toUTCString());
+  });
+
   it('should revert correctly', function() {
     MockDate.reset();
     assert.equal(new Date().getFullYear(), currentYear);
