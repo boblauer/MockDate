@@ -16,6 +16,16 @@ describe('MockDate', function() {
 
   MockDate.set(new Date(mockDate));
 
+  it('should throw for bad date', function() {
+    assert.throws(function () {
+      MockDate.set('40/40/2000');
+    }, 'mockdate: The time set is invalid date 40/40/2000');
+
+    assert.throws(function () {
+      MockDate.set(NaN);
+    }, 'mockdate: The time set is invalid date NaN');
+  });
+
   it('should override new Date()', function() {
     assert.equal(new Date().toString(), new Date(mockDate).toString());
     assert.equal(new Date().getFullYear(), 2000);

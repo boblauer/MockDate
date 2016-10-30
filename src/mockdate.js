@@ -56,13 +56,15 @@
   MockDate.prototype = _Date.prototype;
 
   function set(date) {
+    var dateObj = new Date(date)
+    if (isNaN(dateObj.getTime())) {
+      throw new TypeError('mockdate: The time set is invalid date ' + date)
+    }
     Date = MockDate;
-
     if (date.valueOf) {
       date = date.valueOf();
     }
-
-    now = new Date(date).valueOf();
+    now = dateObj.valueOf();
   }
 
   function reset() {
