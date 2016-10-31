@@ -19,11 +19,11 @@ describe('MockDate', function() {
   it('should throw for bad date', function() {
     assert.throws(function () {
       MockDate.set('40/40/2000');
-    }, 'mockdate: The time set is invalid date 40/40/2000');
+    }, 'mockdate: The time set is an invalid date: 40/40/2000');
 
     assert.throws(function () {
       MockDate.set(NaN);
-    }, 'mockdate: The time set is invalid date NaN');
+    }, 'mockdate: The time set is an invalid date: NaN');
   });
 
   it('should override new Date()', function() {
