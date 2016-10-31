@@ -7,6 +7,7 @@ module.exports = function(grunt) {
       test: {
         src: ['tests/runner.html'],
         options: {
+          log: true,
           run: true
         }
       },
