@@ -56,15 +56,15 @@
 
   MockDate.prototype = _Date.prototype;
 
-  function set(date, timezone) {
+  function set(date, timezoneOffset) {
     var dateObj = new Date(date)
     if (isNaN(dateObj.getTime())) {
       throw new TypeError('mockdate: The time set is an invalid date: ' + date)
     }
 
-    if (timezone !== undefined) {
+    if (typeof timezoneOffset === 'number') {
       MockDate.prototype.getTimezoneOffset = function() {
-        return timezone;
+        return timezoneOffset;
       }
     }
 
