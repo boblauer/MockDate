@@ -27,7 +27,7 @@ var MockDate = window.MockDate;
 
 ## API ##
 ```javascript;
-MockDate.set(date)
+MockDate.set(date, [timezoneOffset])
 ```
 
 #### __date__
@@ -44,6 +44,12 @@ __date__: __`Number`__
 
 The millisecond representation of the `Date` to be returned when no parameters are passed to `new Date()`.
 
+### __timezoneOffset
+
+__timezoneOffset__: __`Number`__
+
+The value that should be returned by new Date().getTimezoneOffset()
+
 ```javascript
 MockDate.reset();
 ```
@@ -56,6 +62,10 @@ MockDate.set('1/1/2000');
 
 new Date().toString() // "Sat Jan 01 2000 00:00:00 GMT-0600 (CST)"
 
+MockDate.set('1/1/2000', 120);
+
+new Date().getTimezoneOffset() // 120
+
 MockDate.set(new Date('2/2/2000'));
 
 new Date().toString() // "Wed Feb 02 2000 00:00:00 GMT-0600 (CST)"
@@ -67,6 +77,7 @@ new Date().toString() // "Fri Mar 03 2000 00:00:00 GMT-0600 (CST)"
 MockDate.reset();
 
 new Date().toString() // "Mon Mar 17 2014 18:08:44 GMT-0500 (CDT)"
+new Date().getTimezoneOffset() // 360
 ```
 
 ## Test ##
