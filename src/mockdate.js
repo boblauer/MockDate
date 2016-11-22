@@ -6,6 +6,7 @@
   "use strict";
 
   var _Date = Date
+    , _getTimezoneOffset = Date.prototype.getTimezoneOffset
     , now   = null
     ;
 
@@ -55,10 +56,16 @@
 
   MockDate.prototype = _Date.prototype;
 
-  function set(date) {
+  function set(date, timezone) {
     var dateObj = new Date(date)
     if (isNaN(dateObj.getTime())) {
       throw new TypeError('mockdate: The time set is an invalid date: ' + date)
+    }
+
+    if (timezone !== undefined) {
+      MockDate.prototype.getTimezoneOffset = function() {
+        return timezone;
+      }
     }
 
     Date = MockDate;
@@ -71,6 +78,7 @@
 
   function reset() {
     Date = _Date;
+    Date.prototype.getTimezoneOffset = _getTimezoneOffset
   }
 
   return {
