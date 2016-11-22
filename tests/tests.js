@@ -12,6 +12,7 @@ describe('MockDate', function() {
   var mockDate       = '1/1/2000'
     , currentYear    = new Date().getFullYear()
     , nativeToString = Date.toString()
+    , actualOffset   = new Date().getTimezoneOffset();
     ;
 
   beforeEach(function () {
@@ -46,8 +47,21 @@ describe('MockDate', function() {
   });
 
   it('should override Date.prototype.getTimezoneOffset', function() {
+    MockDate.set(new Date(mockDate), -1);
+    assert.equal(-1, new Date().getTimezoneOffset());
+  });
+
+  it('should not override Date.prototype.getTimezoneOffset if the value is not a number', function() {
     MockDate.set(new Date(mockDate), '-1');
-    assert.equal('-1', new Date(mockDate).getTimezoneOffset());
+    assert.equal(actualOffset, new Date().getTimezoneOffset());
+  });
+
+  it('should correctly reset Date.prototype.getTimezoneOffset when mocking is stopped', function() {
+    MockDate.set(new Date(mockDate), -1);
+    assert.equal(new Date().getTimezoneOffset(), -1);
+
+    MockDate.reset();
+    assert.equal((new Date()).getTimezoneOffset(), actualOffset);
   });
 
   it('should allow mock dates to show up as real dates using instanceof', function() {
