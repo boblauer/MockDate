@@ -14,7 +14,13 @@ describe('MockDate', function() {
     , nativeToString = Date.toString()
     ;
 
-  MockDate.set(new Date(mockDate));
+  beforeEach(function () {
+    MockDate.set(new Date(mockDate));
+  });
+
+  afterEach(function () {
+    MockDate.reset();
+  });
 
   it('should throw for bad date', function() {
     assert.throws(function () {
@@ -37,6 +43,11 @@ describe('MockDate', function() {
 
   it('should override Date.parse()', function() {
     assert.equal('807926400000', Date.parse('Wed, 09 Aug 1995 00:00:00 GMT'));
+  });
+
+  it('should override Date.prototype.getTimezoneOffset', function() {
+    MockDate.set(new Date(mockDate), '-1');
+    assert.equal('-1', new Date(mockDate).getTimezoneOffset());
   });
 
   it('should allow mock dates to show up as real dates using instanceof', function() {
