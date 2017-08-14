@@ -28,7 +28,7 @@
         break;
 
       default:
-        d = d || 1;
+        d = typeof d === 'undefined' ? 1 : d;
         h = h || 0;
         M = M || 0;
         s = s || 0;
