@@ -89,6 +89,11 @@ describe('MockDate', function() {
     var utcMs   = locDate.valueOf()-locDate.getTimezoneOffset()*60*1000;
     var utcDate = new Date(utcMs);
     assert.equal('Wed, 09 Aug 1995 00:00:00 GMT', utcDate.toUTCString());
+
+    locDate = new Date(1995, 7, 0);
+    utcMs   = locDate.valueOf()-locDate.getTimezoneOffset()*60*1000;
+    utcDate = new Date(utcMs);
+    assert.equal('Mon, 31 Jul 1995 00:00:00 GMT', utcDate.toUTCString());
   });
 
   it('should be able to create a date correctly from the epoch', function() {
