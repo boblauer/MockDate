@@ -54,7 +54,7 @@
     return _Date.toString();
   };
 
-  MockDate.prototype = _Date.prototype;
+  MockDate.prototype = Object.create(_Date.prototype);
 
   function set(date, timezoneOffset) {
     var dateObj = new Date(date)
