@@ -58,7 +58,7 @@ Will restore the original `Date` object back to the native implementation.
 
 ## Example ##
 ```javascript
-MockDate.set('01/30/2000');
+MockDate.set('1/30/2000');
 
 new Date().toString() // "Sun Jan 30 2000 00:00:00 GMT-0600 (CST)"
 
