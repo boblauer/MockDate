@@ -58,21 +58,21 @@ Will restore the original `Date` object back to the native implementation.
 
 ## Example ##
 ```javascript
-MockDate.set('1/1/2000');
+MockDate.set('01/30/2000');
 
-new Date().toString() // "Sat Jan 01 2000 00:00:00 GMT-0600 (CST)"
+new Date().toString() // "Sun Jan 30 2000 00:00:00 GMT-0600 (CST)"
 
-MockDate.set('1/1/2000', 120);
+MockDate.set('1/30/2000', 120);
 
 new Date().getTimezoneOffset() // 120
 
-MockDate.set(new Date('2/2/2000'));
+MockDate.set(new Date('2/20/2000'));
 
-new Date().toString() // "Wed Feb 02 2000 00:00:00 GMT-0600 (CST)"
+new Date().toString() // "Sun Feb 20 2000 00:00:00 GMT-0600 (CST)"
 
-MockDate.set(moment('3/3/2000')); // using momentjs
+MockDate.set(moment('3/30/2000')); // using momentjs
 
-new Date().toString() // "Fri Mar 03 2000 00:00:00 GMT-0600 (CST)"
+new Date().toString() // "Thu Mar 30 2000 00:00:00 GMT-0600 (CST)"
 
 MockDate.reset();
 
