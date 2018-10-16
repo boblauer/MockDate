@@ -38,7 +38,7 @@ The `Date` to be returned when no parameters are passed to `new Date()`.  Suppor
 
 __date__: __`String`__
 
-The string representation of the `Date` to be returned when no parameters are passed to `new Date()`.
+The string representation of the date which is passed to the `new Date()` constructor. This creates the `Date` to be returned when no parameters are passed to `new Date()`.
 
 __date__: __`Number`__
 
@@ -58,6 +58,10 @@ Will restore the original `Date` object back to the native implementation.
 
 ## Example ##
 ```javascript
+MockDate.set('2000-11-22');
+
+new Date().toString() // "Wed Nov 22 2000 00:00:00 GMT-0600 (CST)"
+
 MockDate.set('1/30/2000');
 
 new Date().toString() // "Sun Jan 30 2000 00:00:00 GMT-0600 (CST)"
