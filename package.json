@@ -8,14 +8,15 @@
   "devDependencies": {
     "@types/mocha": "^5.2.5",
     "@types/should": "^13.0.0",
-    "dtslint": "^0.4.2",
     "mocha": "^5.2.0",
     "should": "^13.0.0",
     "tslint": "^5.12.1",
+    "tslint-microsoft-contrib": "^6.0.0",
     "typescript": "^3.2.2"
   },
   "scripts": {
-    "lint": "",
+    "lint": "npm run lint:ts",
+    "lint:ts": "tslint types/**.ts",
     "test": "npm run test:js && npm run test:ts",
     "test:js": "mocha",
     "test:ts": "tsc"

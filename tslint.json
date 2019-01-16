@@ -1,3 +1,7 @@
 {
-  "extends": "dtslint/dt.json"
+  "extends": "tslint-microsoft-contrib",
+  "rules": {
+    "no-reserved-keywords": false,
+    "no-relative-imports": false
+  }
 }

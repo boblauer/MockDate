@@ -1,14 +1,14 @@
-import * as mockdate from './index';
+import * as Mockdate from '.';
 
-mockdate.set(new Date());
-mockdate.set({ valueOf: () => 3 });
-mockdate.set('2017-01-05');
-mockdate.set(new Date().getTime());
+Mockdate.set(new Date());
+Mockdate.set({ valueOf: (): number => 3 });
+Mockdate.set('2017-01-05');
+Mockdate.set(new Date().getTime());
 
-mockdate.set(new Date(), 0);
+Mockdate.set(new Date(), 0);
 
-mockdate.reset();
+Mockdate.reset();
 
-mockdate.startTicking(100);
-mockdate.startTicking();
-mockdate.stopTicking();
+Mockdate.startTicking(100);
+Mockdate.startTicking();
+Mockdate.stopTicking();
