@@ -1,19 +1,27 @@
 {
-  "name": "mockdate",
+  "name": "@fintechstudios/mockdate",
   "version": "2.0.2",
   "description": "A JavaScript mock Date object that can be used to change when \"now\" is.",
   "main": "./src/mockdate.js",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "^3.5.0",
-    "should": "^11.2.1"
+    "@types/mocha": "^5.2.5",
+    "@types/should": "^13.0.0",
+    "dtslint": "^0.4.2",
+    "mocha": "^5.2.0",
+    "should": "^13.0.0",
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.2"
   },
   "scripts": {
-    "test": "mocha"
+    "lint": "",
+    "test": "npm run test:js && npm run test:ts",
+    "test:js": "mocha",
+    "test:ts": "tsc"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/boblauer/MockDate.git"
+    "url": "https://github.com/fintechstudios/MockDate.git"
   },
   "keywords": [
     "date",
@@ -21,6 +29,9 @@
     "test"
   ],
   "author": "Bob Lauer <rlauer@gmail.com>",
+  "contributors": [
+    "austin ce <austin.cawley@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/boblauer/MockDate/issues"

@@ -1,6 +1,16 @@
 const should = require('should');
 const MockDate = require('..');
 
+/**
+ * Wait for a amount of time.
+ *
+ * @param {number} ms
+ * @return {Promise<void>}
+ */
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 describe('MockDate', function() {
 
   var mockDate = '1/1/2000';
@@ -34,6 +44,28 @@ describe('MockDate', function() {
 
   it('should override Date.now()', function() {
     should.equal(Date.now(), new Date(mockDate).valueOf());
+  });
+
+  it('should override Date.now() and update ticks', async () => {
+    MockDate.startTicking(1);
+    const now = Date.now();
+    await wait(10);
+    const later = Date.now();
+    should.equal(later > now, true);
+  });
+
+  it('should override Date.now(), update ticks, and stop ticks', async () => {
+    MockDate.startTicking(1);
+    MockDate.stopTicking();
+    const now = Date.now();
+    await wait(10);
+    const later = Date.now();
+    should.equal(later, now);
+  });
+
+  it('should throw when ticking is started before mocking the date', () => {
+    MockDate.reset();
+    should.throws(() => MockDate.startTicking(), 'mockdate: must `set` date before starting tick.');
   });
 
   it('should override Date.parse()', function() {
