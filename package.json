@@ -3,6 +3,7 @@
   "version": "2.0.2",
   "description": "A JavaScript mock Date object that can be used to change when \"now\" is.",
   "main": "./src/mockdate.js",
+  "types": "./types/index.d.ts",
   "dependencies": {},
   "devDependencies": {
     "@types/mocha": "^5.2.5",
@@ -36,8 +37,5 @@
   "bugs": {
     "url": "https://github.com/boblauer/MockDate/issues"
   },
-  "homepage": "https://github.com/boblauer/MockDate",
-  "spm": {
-    "main": "src/mockdate.js"
-  }
+  "homepage": "https://github.com/boblauer/MockDate"
 }
