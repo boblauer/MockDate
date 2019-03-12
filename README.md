@@ -51,6 +51,23 @@ __timezoneOffset__: __`Number`__
 The value that should be returned by new Date().getTimezoneOffset()
 
 ```javascript
+MockDate.startTicking([tickInterval=1000])
+```
+Start ticking the mocked `now`. Mocked ticking will not be precise and
+will cause performance issues if the interval is excessively small.
+
+ #### __tickInterval__
+
+ __tickInterval__: __`Number`__
+
+ The number of milliseconds to wait between ticks.
+
+ ```javascript
+MockDate.stopTicking()
+```
+Stop ticking the mocked `now`.
+
+```javascript
 MockDate.reset();
 ```
 

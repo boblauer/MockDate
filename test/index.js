@@ -50,6 +50,34 @@ describe('MockDate', function() {
     should.equal(mockDateRealOffset, new Date(mockDate).getTimezoneOffset());
   });
 
+  it('should override Date.now() and update ticks', function(done) {
+    MockDate.startTicking(1);
+    const now = Date.now();
+    setTimeout(function () {
+      const later = Date.now();
+      should.equal(later > now, true);
+      done();
+    }, 10);
+  });
+
+   it('should override Date.now(), update ticks, and stop ticks', function(done) {
+    MockDate.startTicking(1);
+    MockDate.stopTicking();
+    const now = Date.now();
+    setTimeout(function () {
+      const later = Date.now();
+      should.equal(later, now);
+      done();
+    }, 10);
+  });
+
+   it('should throw when ticking is started before mocking the date', function() {
+    MockDate.reset();
+    should.throws(function () {
+      MockDate.startTicking();
+    }, 'mockdate: must `set` date before starting tick.');
+  });
+
   it('should correctly reset Date.prototype.getTimezoneOffset when mocking is stopped', function() {
     MockDate.set(new Date(mockDate), -1);
     should.equal(new Date().getTimezoneOffset(), -1);

@@ -8,6 +8,7 @@
   var _Date = Date
     , _getTimezoneOffset = Date.prototype.getTimezoneOffset
     , now   = null
+    , tickIntervalId = null
     ;
 
   function MockDate(y, m, d, h, M, s, ms) {
@@ -79,10 +80,34 @@
   function reset() {
     Date = _Date;
     Date.prototype.getTimezoneOffset = _getTimezoneOffset
+    stopTickInterval();
+    now = null;
+  }
+
+  function startTickInterval(intervalMillis) {
+    if (intervalMillis === undefined) {
+      intervalMillis = 1000;
+    }
+
+    if (now == null){
+      throw new Error('mockdate: must `set` date before starting tick.');
+    }
+    tickIntervalId = setInterval(() => {
+      now += intervalMillis;
+    }, intervalMillis);
+  }
+
+  function stopTickInterval() {
+    if (tickIntervalId) {
+      clearInterval(tickIntervalId);
+      tickIntervalId = null;
+    }
   }
 
   return {
     set: set,
+    startTicking: startTickInterval,
+    stopTicking: stopTickInterval,
     reset: reset
   };
 
