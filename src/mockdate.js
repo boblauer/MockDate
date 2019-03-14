@@ -92,7 +92,7 @@
     if (now == null){
       throw new Error('mockdate: must `set` date before starting tick.');
     }
-    tickIntervalId = setInterval(() => {
+    tickIntervalId = setInterval(function() {
       now += intervalMillis;
     }, intervalMillis);
   }
