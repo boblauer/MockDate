@@ -4,6 +4,6 @@
 //                 Kav Singh <https://github.com/kavsingh>
 
 export = {
-  set(date: Date | string | number, timezoneOffset?: number): void;
+  set(date: Date | string | number, timezoneOffset?: number): void,
   reset(): void;
 }
