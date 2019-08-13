@@ -60,7 +60,7 @@ Will restore the original `Date` object back to the native implementation.
 ```javascript
 MockDate.set('2000-11-22');
 
-new Date().toString() // "Wed Nov 22 2000 00:00:00 GMT-0600 (CST)"
+new Date().toString() // "Tue Nov 21 2000 18:00:00 GMT-0600 (CST)"
 
 MockDate.set('1/30/2000');
 
