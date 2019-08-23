@@ -69,9 +69,6 @@
     }
 
     Date = MockDate;
-    if (date.valueOf) {
-      date = date.valueOf();
-    }
 
     now = dateObj.valueOf();
   }
