@@ -2,29 +2,38 @@ const should = require('should');
 const MockDate = require('..');
 
 describe('MockDate', function() {
-
   var mockDate = '1/1/2000';
   var currentYear = new Date().getFullYear();
   var nativeToString = Date.toString();
   var mockDateRealOffset = new Date(mockDate).getTimezoneOffset();
   var currentDateRealOffset = new Date().getTimezoneOffset();
 
-  beforeEach(function () {
+  beforeEach(function() {
     MockDate.set(new Date(mockDate));
   });
 
-  afterEach(function () {
+  afterEach(function() {
     MockDate.reset();
   });
 
   it('should throw for bad date', function() {
-    should.throws(function () {
+    should.throws(function() {
       MockDate.set('40/40/2000');
-    }, 'mockdate: The time set is an invalid date: 40/40/2000');
+    }, 'mockdate: Received an empty array of dates on setMultiple, pass at least one valid date');
 
-    should.throws(function () {
+    should.throws(function() {
       MockDate.set(NaN);
+    }, 'mockdate: Pass at least one valid date to setMultiple, first elment of array is an invalid date: NaN');
+  });
+
+  it('should throw for bad dates', function() {
+    should.throws(function() {
+      MockDate.setMultiple(NaN);
     }, 'mockdate: The time set is an invalid date: NaN');
+
+    should.throws(function() {
+      MockDate.setMultiple(['40/40/2000']);
+    }, 'mockdate: The time set is an invalid date: 40/40/2000');
   });
 
   it('should override new Date()', function() {
@@ -73,14 +82,14 @@ describe('MockDate', function() {
 
   it('should be able to create a specific date from year, month', function() {
     var locDate = new Date(1995, 7);
-    var utcMs   = locDate.valueOf()-locDate.getTimezoneOffset()*60*1000;
+    var utcMs = locDate.valueOf() - locDate.getTimezoneOffset() * 60 * 1000;
     var utcDate = new Date(utcMs);
     should.equal('Tue, 01 Aug 1995 00:00:00 GMT', utcDate.toUTCString());
   });
 
   it('should be able to create a specific date from year, month, date', function() {
     var locDate = new Date(1995, 7, 9);
-    var utcMs   = locDate.valueOf()-locDate.getTimezoneOffset()*60*1000;
+    var utcMs = locDate.valueOf() - locDate.getTimezoneOffset() * 60 * 1000;
     var utcDate = new Date(utcMs);
     should.equal('Wed, 09 Aug 1995 00:00:00 GMT', utcDate.toUTCString());
   });
@@ -93,6 +102,27 @@ describe('MockDate', function() {
   it('should be able to create a date correctly from the epoch', function() {
     MockDate.set(0);
     should.equal('Thu, 01 Jan 1970 00:00:00 GMT', new Date().toUTCString());
+  });
+
+  it('should set multiple dates and use it in cycles', function() {
+    const dates = [
+      new Date(2020, 0, 19),
+      new Date(2020, 0, 20),
+      new Date(1991, 0, 10),
+    ];
+    const timezoneOffset = 0;
+
+    MockDate.setMultiple(dates, timezoneOffset);
+    const firstDate = new Date();
+    const secondDate = new Date();
+    const thirdDate = new Date();
+    const fourthDate = new Date();
+
+    should.equal(timezoneOffset, firstDate.getTimezoneOffset());
+    should.equal(dates[0].toString(), firstDate.toString());
+    should.equal(dates[1].toString(), secondDate.toString());
+    should.equal(dates[2].toString(), thirdDate.toString());
+    should.equal(dates[2].toString(), fourthDate.toString());
   });
 
   it('should revert correctly', function() {
