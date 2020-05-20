@@ -6,8 +6,8 @@
   "types": "lib/mockdate.d.ts",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "^3.5.0",
-    "should": "^11.2.1",
+    "mocha": "7.1.2",
+    "should": "13.2.3",
     "typescript": "3.9.3"
   },
   "scripts": {
