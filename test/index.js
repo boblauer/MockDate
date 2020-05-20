@@ -40,24 +40,6 @@ describe('MockDate', function() {
     should.equal('807926400000', Date.parse('Wed, 09 Aug 1995 00:00:00 GMT'));
   });
 
-  it('should override Date.prototype.getTimezoneOffset', function() {
-    MockDate.set(new Date(mockDate), -1);
-    should.equal(-1, new Date().getTimezoneOffset());
-  });
-
-  it('should not override Date.prototype.getTimezoneOffset if the value is not a number', function() {
-    MockDate.set(new Date(mockDate), '-1');
-    should.equal(mockDateRealOffset, new Date(mockDate).getTimezoneOffset());
-  });
-
-  it('should correctly reset Date.prototype.getTimezoneOffset when mocking is stopped', function() {
-    MockDate.set(new Date(mockDate), -1);
-    should.equal(new Date().getTimezoneOffset(), -1);
-
-    MockDate.reset();
-    should.equal(new Date().getTimezoneOffset(), currentDateRealOffset);
-  });
-
   it('should allow mock dates to show up as real dates using instanceof', function() {
     should.ok(new Date() instanceof Date);
   });
