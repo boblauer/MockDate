@@ -2,7 +2,8 @@
   "name": "mockdate",
   "version": "2.0.5",
   "description": "A JavaScript mock Date object that can be used to change when \"now\" is.",
-  "main": "./src/mockdate.js",
+  "main": "lib/mockdate.js",
+  "types": "lib/mockdate.d.ts",
   "dependencies": {},
   "devDependencies": {
     "mocha": "^3.5.0",
@@ -10,7 +11,10 @@
     "typescript": "3.9.3"
   },
   "scripts": {
-    "test": "mocha"
+    "build": "tsc",
+    "test": "npm run build && mocha",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run test"
   },
   "repository": {
     "type": "git",
