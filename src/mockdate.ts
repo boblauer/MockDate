@@ -1,30 +1,27 @@
-(function(name, definition) {
-  if (typeof module !== 'undefined') module.exports = definition();
-  else if (typeof define === 'function' && typeof define.amd === 'object') define(definition);
-  else this[name] = definition();
-}('MockDate', function() {
-  "use strict";
+const RealDate = Date;
+let now: null | number = null;
 
-  var _Date = Date
-    , _getTimezoneOffset = Date.prototype.getTimezoneOffset
-    , now   = null
-    ;
+class MockDate extends Date {
+  constructor();
+  constructor(value: number | string);
+  constructor(year: number, month: number, date?: number, hours?: number, minutes?: number, seconds?: number, ms?: number);
 
-  function MockDate(y, m, d, h, M, s, ms) {
-    var date;
+  constructor(y?: number, m?: number, d?: number, h?: number, M?: number, s?: number, ms?: number) {
+    super();
+
+    let date;
 
     switch (arguments.length) {
-
       case 0:
         if (now !== null) {
-          date = new _Date(now);
+          date = new RealDate(now.valueOf());
         } else {
-          date = new _Date();
+          date = new RealDate();
         }
         break;
 
       case 1:
-        date = new _Date(y);
+        date = new RealDate(y);
         break;
 
       default:
@@ -33,57 +30,46 @@
         M = M || 0;
         s = s || 0;
         ms = ms || 0;
-        date = new _Date(y, m, d, h, M, s, ms);
+        date = new RealDate(y, m, d, h, M, s, ms);
         break;
     }
 
     return date;
   }
+}
 
-  MockDate.UTC = _Date.UTC;
+MockDate.prototype = RealDate.prototype;
 
-  MockDate.now = function() {
-    return new MockDate().valueOf();
-  };
+MockDate.UTC = RealDate.UTC;
 
-  MockDate.parse = function(dateString) {
-    return _Date.parse(dateString);
-  };
+MockDate.now = function() {
+  return new MockDate().valueOf();
+};
 
-  MockDate.toString = function() {
-    return _Date.toString();
-  };
+MockDate.parse = function(dateString) {
+  return RealDate.parse(dateString);
+};
 
-  MockDate.prototype = _Date.prototype;
+MockDate.toString = function() {
+  return RealDate.toString();
+};
 
-  function set(date, timezoneOffset) {
-    var dateObj = new Date(date)
-    if (isNaN(dateObj.getTime())) {
-      throw new TypeError('mockdate: The time set is an invalid date: ' + date)
-    }
-
-    if (typeof timezoneOffset === 'number') {
-      MockDate.prototype.getTimezoneOffset = function() {
-        return timezoneOffset;
-      }
-    }
-
-    Date = MockDate;
-    if (date.valueOf) {
-      date = date.valueOf();
-    }
-
-    now = dateObj.valueOf();
+export function set(date: string | number): void {
+  var dateObj = new Date(date)
+  if (isNaN(dateObj.getTime())) {
+    throw new TypeError('mockdate: The time set is an invalid date: ' + date)
   }
 
-  function reset() {
-    Date = _Date;
-    Date.prototype.getTimezoneOffset = _getTimezoneOffset
+  // @ts-ignore
+  Date = MockDate;
+
+  if (date.valueOf) {
+    date = date.valueOf();
   }
 
-  return {
-    set: set,
-    reset: reset
-  };
+  now = dateObj.valueOf();
+}
 
-}));
+export function reset(): void {
+  Date = RealDate;
+}
