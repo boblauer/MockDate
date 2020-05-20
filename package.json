@@ -6,7 +6,8 @@
   "dependencies": {},
   "devDependencies": {
     "mocha": "^3.5.0",
-    "should": "^11.2.1"
+    "should": "^11.2.1",
+    "typescript": "3.9.3"
   },
   "scripts": {
     "test": "mocha"
