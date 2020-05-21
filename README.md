@@ -55,7 +55,7 @@ MockDate.set(new Date('2/20/2000'));
 
 new Date().toString() // "Sun Feb 20 2000 00:00:00 GMT-0600 (CST)"
 
-MockDate.set(moment('3/30/2000')); // using momentjs
+MockDate.set(moment('3/30/2000').valueOf()); // using momentjs
 
 new Date().toString() // "Thu Mar 30 2000 00:00:00 GMT-0600 (CST)"
 
