@@ -73,3 +73,8 @@ export function set(date: string | number): void {
 export function reset(): void {
   Date = RealDate;
 }
+
+export default {
+  set,
+  reset,
+}
