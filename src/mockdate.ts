@@ -54,8 +54,8 @@ MockDate.toString = function() {
   return RealDate.toString();
 };
 
-export function set(date: string | number): void {
-  var dateObj = new Date(date)
+export function set(date: string | number | Date): void {
+  var dateObj = new Date(date.valueOf())
   if (isNaN(dateObj.getTime())) {
     throw new TypeError('mockdate: The time set is an invalid date: ' + date)
   }
