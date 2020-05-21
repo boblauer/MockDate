@@ -1,6 +1,8 @@
 const RealDate = Date;
 let now: null | number = null;
 
+import { Moment } from 'moment';
+
 class MockDate extends Date {
   constructor();
   constructor(value: number | string);
@@ -54,8 +56,18 @@ MockDate.toString = function() {
   return RealDate.toString();
 };
 
-export function set(date: string | number | Date): void {
-  var dateObj = typeof date === 'object' ? date : new Date(date);
+export function set(date: string | number | Date | Moment): void {
+  var dateObj: Date;
+
+  // For Date objects and moment.Moment objects
+  if (typeof date === 'object' && date.valueOf) {
+    dateObj = new Date(date.valueOf())
+  } else if (typeof date === 'string' || typeof date === 'number') {
+    dateObj = new Date(date);
+  } else {
+    throw new TypeError('mockdate: The time set is an invalid date: ' + date)
+  }
+
   if (isNaN(dateObj.getTime())) {
     throw new TypeError('mockdate: The time set is an invalid date: ' + date)
   }
