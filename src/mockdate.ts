@@ -1,5 +1,6 @@
 const RealDate = Date;
 let now: null | number = null;
+let start: null | number = null;
 
 class MockDate extends Date {
   constructor();
@@ -14,7 +15,13 @@ class MockDate extends Date {
     switch (arguments.length) {
       case 0:
         if (now !== null) {
-          date = new RealDate(now.valueOf());
+          if(start == null) {
+            date = new RealDate(now.valueOf());
+          }
+          else {
+            const delta = RealDate.now().valueOf() - start.valueOf();
+            date = new RealDate(now.valueOf() + delta);
+          }
         } else {
           date = new RealDate();
         }
@@ -54,7 +61,7 @@ MockDate.toString = function() {
   return RealDate.toString();
 };
 
-export function set(date: string | number | Date): void {
+export function set(date: string | number | Date, advanceTime?: boolean): void {
   var dateObj = new Date(date.valueOf())
   if (isNaN(dateObj.getTime())) {
     throw new TypeError('mockdate: The time set is an invalid date: ' + date)
@@ -68,6 +75,9 @@ export function set(date: string | number | Date): void {
   }
 
   now = dateObj.valueOf();
+  if(advanceTime === true) {
+    start = RealDate.now();
+  }
 }
 
 export function reset(): void {
