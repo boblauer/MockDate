@@ -17,8 +17,12 @@ import MockDate from 'mockdate'
 ```
 
 ## API ##
-```javascript;
+```javascript
 MockDate.set(date)
+```
+
+```javascript
+MockDate.set(date, advanceTime)
 ```
 
 #### __date__
@@ -34,6 +38,10 @@ The string representation of the date which is passed to the `new Date()` constr
 __date__: __`Number`__
 
 The millisecond representation of the `Date` to be returned when no parameters are passed to `new Date()`.
+
+__advanceTime__: __`boolean`__ *(Optional)*
+
+If set to `true`, time will advance forward relative to the `Date` parameter provided. Each time MockDate is used to get a new Date instance, it will be offset forward the amount of time that has passed since setting the date with `MockDate.set`
 
 ```javascript
 MockDate.reset();
@@ -62,6 +70,13 @@ new Date().toString() // "Thu Mar 30 2000 00:00:00 GMT-0600 (CST)"
 MockDate.reset();
 
 new Date().toString() // "Mon Mar 17 2014 18:08:44 GMT-0500 (CDT)"
+
+// With advanceTime set to true
+MockDate.set(new Date('2/20/2000'), true);
+
+new Date().toString() // "Sun Feb 20 2000 00:00:00 GMT-0600 (CST)"
+// ... 5 seconds later
+new Date().toString() // "Sun Feb 20 2000 00:00:05 GMT-0600 (CST)"
 ```
 
 ## Test ##
