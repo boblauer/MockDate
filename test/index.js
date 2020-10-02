@@ -82,4 +82,14 @@ describe('MockDate', function() {
     should.equal(new Date().getFullYear(), currentYear);
     should.ok(Date.toString().indexOf('native'));
   });
+
+  it('should allow advancing of time since set date', function(done) {
+    var start = new Date(2018, 6, 1);
+    MockDate.set(start, true);
+    should.equal(new Date().toUTCString(), 'Sun, 01 Jul 2018 04:00:00 GMT');
+    setTimeout(() => {
+      should.equal(new Date().toUTCString(), 'Sun, 01 Jul 2018 04:00:01 GMT');
+      done();
+    }, 1000)
+  });
 });
