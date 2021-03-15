@@ -17,6 +17,10 @@ describe('MockDate', function() {
     MockDate.reset();
   });
 
+  it('should check date constructor name', function() {
+    should.equal(Date.name, 'Date');
+  });
+
   it('should throw for bad date', function() {
     should.throws(function () {
       MockDate.set('40/40/2000');
