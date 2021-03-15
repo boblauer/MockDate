@@ -1,6 +1,6 @@
 {
   "name": "mockdate",
-  "version": "1.0.1",
+  "version": "3.0.2",
   "keywords": [
     "date",
     "mock",
@@ -8,6 +8,8 @@
   ],
   "description": "A JavaScript mock Date object that can be used to change when \"now\" is.",
   "license": "MIT",
-  "main": "src/mockdate.js",
-  "scripts": ["src/mockdate.js"]
+  "main": "lib/mockdate.js",
+  "scripts": [
+    "lib/mockdate.js"
+  ]
 }

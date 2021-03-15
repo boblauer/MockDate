@@ -32,6 +32,6 @@
   },
   "homepage": "https://github.com/boblauer/MockDate",
   "spm": {
-    "main": "src/mockdate.js"
+    "main": "lib/mockdate.js"
   }
 }
