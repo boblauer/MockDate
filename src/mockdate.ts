@@ -63,10 +63,6 @@ export function set(date: string | number | Date): void {
   // @ts-ignore
   Date = MockDate;
 
-  if (date.valueOf) {
-    date = date.valueOf();
-  }
-
   now = dateObj.valueOf();
 }
 
