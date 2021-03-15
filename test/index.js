@@ -1,13 +1,10 @@
 const should = require('should');
-const MockDate = require('..');
+const MockDate = require('../lib/mockdate');
 
 describe('MockDate', function() {
-
-  var mockDate = '1/1/2000';
-  var currentYear = new Date().getFullYear();
-  var nativeToString = Date.toString();
-  var mockDateRealOffset = new Date(mockDate).getTimezoneOffset();
-  var currentDateRealOffset = new Date().getTimezoneOffset();
+  const mockDate = '1/1/2000';
+  const currentYear = new Date().getFullYear();
+  const nativeToString = Date.toString();
 
   beforeEach(function () {
     MockDate.set(new Date(mockDate));
