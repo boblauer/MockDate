@@ -1,3 +1,7 @@
+## 3.0.4
+
+- Properly exposed window.MockDate when loaded in the browser.
+
 ## 3.0.3
 
 - Switched TypeScript build from CommonJS to UMD.
