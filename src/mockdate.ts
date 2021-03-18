@@ -77,5 +77,6 @@ export default {
 
 
 if (typeof window !== 'undefined') {
+  // @ts-ignore
   window.MockDate = MockDate;
 }
