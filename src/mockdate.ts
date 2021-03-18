@@ -74,3 +74,8 @@ export default {
   set,
   reset,
 }
+
+
+if (typeof window !== 'undefined') {
+  window.MockDate = MockDate;
+}
