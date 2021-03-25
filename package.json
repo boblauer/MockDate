@@ -1,6 +1,6 @@
 {
   "name": "mockdate",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "A JavaScript mock Date object that can be used to change when \"now\" is.",
   "main": "lib/mockdate.js",
   "types": "lib/mockdate.d.ts",
