@@ -1,3 +1,7 @@
+## 3.0.5
+
+- Use Rollup to build a proper UMD package.
+
 ## 3.0.4
 
 - Properly exposed window.MockDate when loaded in the browser.
