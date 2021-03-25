@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "ES5",
-        "module": "UMD",
+        "module": "ES2015",
         "declaration": true,
         "noImplicitAny": true,
         "sourceMap": true,
