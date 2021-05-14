@@ -1,6 +1,6 @@
 /* eslint @typescript-eslint/ban-ts-comment: ['error', {'ts-ignore': false}]  */
 const RealDate = globalThis.Date;
-let now: null | number = null;
+let now: null | number | {valueOf: () => string | number} = null;
 
 export const MockDate = class Date extends RealDate {
   constructor();
@@ -57,16 +57,28 @@ MockDate.toString = function() {
   return RealDate.toString();
 };
 
-export function set(date: string | number | Date): void {
-  const dateObj = new Date(date.valueOf())
-  if (isNaN(dateObj.getTime())) {
-    throw new TypeError('mockdate: The time set is an invalid date: ' + date)
+export function set(date: string | number | Date | (() => string | number)): void {
+  const validateDate = (_date : string | number | Date) => {
+    const value = _date.valueOf();
+    const dateObj = new Date(value);
+    if (isNaN(dateObj.getTime())) {
+      throw new TypeError('mockdate: The time set is an invalid date: ' + _date);
+    }
+    return value;
+  };
+  if (typeof date === 'function') {
+    now = {
+      valueOf () : string | number {
+        const dt = date();
+        return validateDate(dt);
+      }
+    };
+  } else {
+    now = validateDate(date);
   }
 
   // @ts-ignore
   globalThis.Date = MockDate;
-
-  now = dateObj.valueOf();
 }
 
 export function reset(): void {

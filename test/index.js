@@ -12,8 +12,26 @@ describe('MockDate', function() {
       (new Date()).should.be.belowOrEqual(new MockDateConstructor());
     });
   });
+  describe('with MockDate#set(<function>)', function () {
+    beforeEach(function () {
+      let dateTime = new Date(mockDate).getTime();
+      MockDate.set(() => {
+        return new Date(++dateTime);
+      });
+    });
 
-  describe('with MockDate#set', function () {
+    afterEach(function () {
+      MockDate.reset();
+    });
+
+    it('Retrieves a different date for incrementing function', function () {
+      const date1 = new Date().getTime();
+      const date2 = new Date().getTime();
+      should.equal(date1 + 1, date2);
+    });
+  });
+
+  describe('with MockDate#set(<string>)', function () {
     beforeEach(function () {
       MockDate.set(new Date(mockDate));
     });
