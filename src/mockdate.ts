@@ -1,5 +1,5 @@
 /* eslint @typescript-eslint/ban-ts-comment: ['error', {'ts-ignore': false}]  */
-const RealDate = Date;
+const RealDate = globalThis.Date;
 let now: null | number = null;
 
 export const MockDate = class Date extends RealDate {
@@ -64,14 +64,13 @@ export function set(date: string | number | Date): void {
   }
 
   // @ts-ignore
-  Date = MockDate; // eslint-disable-line no-global-assign -- Needed for Mock
+  globalThis.Date = MockDate;
 
   now = dateObj.valueOf();
 }
 
 export function reset(): void {
-  // eslint-disable-next-line no-global-assign -- Needed for Mock
-  Date = RealDate;
+  globalThis.Date = RealDate;
 }
 
 export default {
