@@ -2,7 +2,7 @@
 const RealDate = Date;
 let now: null | number = null;
 
-const MockDate = class Date extends RealDate {
+export const MockDate = class Date extends RealDate {
   constructor();
   constructor(value: number | string);
   constructor(year: number, month: number, date?: number, hours?: number, minutes?: number, seconds?: number, ms?: number);
