@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/ban-ts-comment: ['error', {'ts-ignore': false}]  */
 const RealDate = Date;
 let now: null | number = null;
 
@@ -55,18 +56,19 @@ MockDate.toString = function() {
 };
 
 export function set(date: string | number | Date): void {
-  var dateObj = new Date(date.valueOf())
+  const dateObj = new Date(date.valueOf())
   if (isNaN(dateObj.getTime())) {
     throw new TypeError('mockdate: The time set is an invalid date: ' + date)
   }
 
   // @ts-ignore
-  Date = MockDate;
+  Date = MockDate; // eslint-disable-line no-global-assign -- Needed for Mock
 
   now = dateObj.valueOf();
 }
 
 export function reset(): void {
+  // eslint-disable-next-line no-global-assign -- Needed for Mock
   Date = RealDate;
 }
 
