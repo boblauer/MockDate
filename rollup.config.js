@@ -4,6 +4,7 @@ export default [{
   input: 'src/mockdate.ts',
   output: {
     exports: 'named',
+    sourcemap: true,
     file: 'lib/mockdate.cjs',
     format: 'umd',
     name: 'MockDate',
@@ -12,6 +13,7 @@ export default [{
 }, {
   input: 'src/mockdate.ts',
   output: {
+    sourcemap: true,
     file: 'lib/mockdate.js',
     format: 'esm',
     name: 'MockDate',

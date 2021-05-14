@@ -8,6 +8,8 @@ export const MockDate = class Date extends RealDate {
   constructor(year: number, month: number, date?: number, hours?: number, minutes?: number, seconds?: number, ms?: number);
 
   constructor(y?: number, m?: number, d?: number, h?: number, M?: number, s?: number, ms?: number) {
+    // When converted to ESM, `super` gets a conditional branch, so we ignore
+    /* c8 ignore next */
     super();
 
     let date;
