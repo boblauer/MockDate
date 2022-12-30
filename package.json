@@ -6,7 +6,7 @@
   "types": "lib/mockdate.d.ts",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "7.1.2",
+    "mocha": "10.2.0",
     "rollup": "2.42.4",
     "rollup-plugin-typescript2": "0.30.0",
     "should": "13.2.3",
