@@ -54,20 +54,28 @@ MockDate.toString = function() {
   return RealDate.toString();
 };
 
-export function set(date: string | number | Date): void {
+export function set(date: string | number | Date, win?: any): void {
   var dateObj = new Date(date.valueOf())
   if (isNaN(dateObj.getTime())) {
     throw new TypeError('mockdate: The time set is an invalid date: ' + date)
   }
-
-  // @ts-ignore
-  Date = MockDate;
+  
+  if (win) {
+    win.Date = MockDate;
+  } else {
+    // @ts-ignore
+    Date = MockDate;
+  }
 
   now = dateObj.valueOf();
 }
 
-export function reset(): void {
-  Date = RealDate;
+export function reset(win?: any): void {
+  if (win) {
+    win.Date = RealDate;
+  } else {
+    Date = RealDate;
+  }
 }
 
 export default {
