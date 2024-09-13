@@ -1,12 +1,15 @@
-const RealDate = Date;
-let now: null | number = null;
+/* eslint @typescript-eslint/ban-ts-comment: ['error', {'ts-ignore': false}]  */
+const RealDate = globalThis.Date;
+let now: null | number | {valueOf: () => string | number} = null;
 
-const MockDate = class Date extends RealDate {
+export const MockDate = class Date extends RealDate {
   constructor();
   constructor(value: number | string);
   constructor(year: number, month: number, date?: number, hours?: number, minutes?: number, seconds?: number, ms?: number);
 
   constructor(y?: number, m?: number, d?: number, h?: number, M?: number, s?: number, ms?: number) {
+    // When converted to ESM, `super` gets a conditional branch, so we ignore
+    /* c8 ignore next */
     super();
 
     let date;
@@ -54,20 +57,32 @@ MockDate.toString = function() {
   return RealDate.toString();
 };
 
-export function set(date: string | number | Date): void {
-  var dateObj = new Date(date.valueOf())
-  if (isNaN(dateObj.getTime())) {
-    throw new TypeError('mockdate: The time set is an invalid date: ' + date)
+export function set(date: string | number | Date | (() => string | number)): void {
+  const validateDate = (_date : string | number | Date) => {
+    const value = _date.valueOf();
+    const dateObj = new Date(value);
+    if (isNaN(dateObj.getTime())) {
+      throw new TypeError('mockdate: The time set is an invalid date: ' + _date);
+    }
+    return value;
+  };
+  if (typeof date === 'function') {
+    now = {
+      valueOf () : string | number {
+        const dt = date();
+        return validateDate(dt);
+      }
+    };
+  } else {
+    now = validateDate(date);
   }
 
   // @ts-ignore
-  Date = MockDate;
-
-  now = dateObj.valueOf();
+  globalThis.Date = MockDate;
 }
 
 export function reset(): void {
-  Date = RealDate;
+  globalThis.Date = RealDate;
 }
 
 export default {
