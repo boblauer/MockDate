@@ -49,6 +49,14 @@ MockDate.set('1/30/2000');
 
 new Date().toString() // "Sun Jan 30 2000 00:00:00 GMT-0600 (CST)"
 
+MockDate.set('2000-11-22 11:22:33 AM'); // with time
+
+new Date().toString() // "Wed Nov 22 2000 11:22:33 GMT-0600 (CST)"
+
+MockDate.set('2000-11-22T22:11:44'); // ISO 8601 datetime
+
+new Date().toString() // "Wed Nov 22 2000 22:11:44 GMT-0600 (CST)"
+
 MockDate.set(new Date('2/20/2000'));
 
 new Date().toString() // "Sun Feb 20 2000 00:00:00 GMT-0600 (CST)"
