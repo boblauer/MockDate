@@ -1,5 +1,5 @@
-const should = require('should');
-const MockDate = require('../lib/mockdate');
+import should from 'should';
+import MockDate from '../lib/mockdate.js';
 
 describe('MockDate', function() {
   const mockDate = '1/1/2000';
