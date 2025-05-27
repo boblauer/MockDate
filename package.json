@@ -4,21 +4,22 @@
   "description": "A JavaScript mock Date object that can be used to change when \"now\" is.",
   "main": "lib/mockdate.js",
   "types": "lib/mockdate.d.ts",
-  "dependencies": {},
+  "type": "module",
   "devDependencies": {
-    "mocha": "7.1.2",
-    "rollup": "2.42.4",
-    "rollup-plugin-typescript2": "0.30.0",
-    "should": "13.2.3",
-    "typescript": "3.9.3"
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^22.15.21",
+    "prettier": "^3.5.3",
+    "rollup": "^4.41.1",
+    "typescript": "^5.8.3"
   },
   "scripts": {
     "build": "npm run build:js && npm run build:types",
     "build:types": "tsc -t esnext --moduleResolution node -d --emitDeclarationOnly --outFile lib/mockdate.d.ts src/mockdate.ts",
     "build:js": "rollup -c rollup.config.js",
-    "test": "npm run build && mocha",
+    "test": "node --test",
     "prepare": "npm run build",
-    "prepublishOnly": "npm run test"
+    "prepublishOnly": "npm run test",
+    "lint": "prettier . --write"
   },
   "repository": {
     "type": "git",

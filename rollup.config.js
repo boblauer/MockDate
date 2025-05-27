@@ -1,12 +1,12 @@
-import typescript from 'rollup-plugin-typescript2';
+import typescript from "@rollup/plugin-typescript";
 
 export default {
-  input: 'src/mockdate.ts',
+  input: "src/mockdate.ts",
   output: [
     {
-      file: 'lib/mockdate.js',
-      format: 'umd',
-      name: 'MockDate',
+      file: "lib/mockdate.js",
+      format: "umd",
+      name: "MockDate",
     },
   ],
   plugins: [typescript()],
