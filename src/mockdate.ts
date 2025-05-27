@@ -36,7 +36,11 @@ const MockDate = class Date extends RealDate {
 
     return date;
   }
-}
+
+  static [Symbol.hasInstance](instance: unknown): boolean {
+    return instance instanceof RealDate;
+  }
+};
 
 MockDate.prototype = RealDate.prototype;
 
