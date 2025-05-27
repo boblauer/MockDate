@@ -7,16 +7,15 @@
   "type": "module",
   "devDependencies": {
     "@rollup/plugin-typescript": "^12.1.2",
-    "mocha": "^11.5.0",
+    "@types/node": "^22.15.21",
     "rollup": "^4.41.1",
-    "should": "13.2.3",
     "typescript": "^5.8.3"
   },
   "scripts": {
     "build": "npm run build:js && npm run build:types",
     "build:types": "tsc -t esnext --moduleResolution node -d --emitDeclarationOnly --outFile lib/mockdate.d.ts src/mockdate.ts",
     "build:js": "rollup -c rollup.config.js",
-    "test": "npm run build && mocha",
+    "test": "node --test",
     "prepare": "npm run build",
     "prepublishOnly": "npm run test"
   },
