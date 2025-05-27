@@ -6,11 +6,11 @@ describe('MockDate', function() {
   const currentYear = new Date().getFullYear();
   const nativeToString = Date.toString();
 
-  beforeEach(function () {
+  beforeEach(function() {
     MockDate.set(new Date(mockDate));
   });
 
-  afterEach(function () {
+  afterEach(function() {
     MockDate.reset();
   });
 
@@ -19,11 +19,11 @@ describe('MockDate', function() {
   });
 
   it('should throw for bad date', function() {
-    should.throws(function () {
+    should.throws(function() {
       MockDate.set('40/40/2000');
     }, 'mockdate: The time set is an invalid date: 40/40/2000');
 
-    should.throws(function () {
+    should.throws(function() {
       MockDate.set(NaN);
     }, 'mockdate: The time set is an invalid date: NaN');
   });
@@ -56,14 +56,14 @@ describe('MockDate', function() {
 
   it('should be able to create a specific date from year, month', function() {
     var locDate = new Date(1995, 7);
-    var utcMs   = locDate.valueOf()-locDate.getTimezoneOffset()*60*1000;
+    var utcMs = locDate.valueOf() - locDate.getTimezoneOffset() * 60 * 1000;
     var utcDate = new Date(utcMs);
     should.equal('Tue, 01 Aug 1995 00:00:00 GMT', utcDate.toUTCString());
   });
 
   it('should be able to create a specific date from year, month, date', function() {
     var locDate = new Date(1995, 7, 9);
-    var utcMs   = locDate.valueOf()-locDate.getTimezoneOffset()*60*1000;
+    var utcMs = locDate.valueOf() - locDate.getTimezoneOffset() * 60 * 1000;
     var utcDate = new Date(utcMs);
     should.equal('Wed, 09 Aug 1995 00:00:00 GMT', utcDate.toUTCString());
   });
@@ -82,5 +82,11 @@ describe('MockDate', function() {
     MockDate.reset();
     should.equal(new Date().getFullYear(), currentYear);
     should.ok(Date.toString().indexOf('native'));
+  });
+
+  it('should overwrite instanceof', function() {
+    const realDate = new Date();
+    MockDate.set(0);
+    const mockDate = new Date();
   });
 });
