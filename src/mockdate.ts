@@ -42,8 +42,6 @@ const MockDate = class Date extends RealDate {
   }
 };
 
-MockDate.prototype = RealDate.prototype;
-
 MockDate.UTC = RealDate.UTC;
 
 MockDate.now = function() {
