@@ -1,12 +1,12 @@
 {
-    "compilerOptions": {
-        "target": "ES6",
-        "module": "ES2015",
-        "declaration": true,
-        "noImplicitAny": true,
-        "sourceMap": true,
-        "outDir": "./lib"
-    },
-    "include": ["src"],
-    "exclude": ["node_modules", "test"]
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ES2015",
+    "declaration": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "outDir": "./lib"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "test"]
 }

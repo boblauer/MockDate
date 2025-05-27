@@ -4,9 +4,25 @@ let now: null | number = null;
 const MockDate = class Date extends RealDate {
   constructor();
   constructor(value: number | string);
-  constructor(year: number, month: number, date?: number, hours?: number, minutes?: number, seconds?: number, ms?: number);
+  constructor(
+    year: number,
+    month: number,
+    date?: number,
+    hours?: number,
+    minutes?: number,
+    seconds?: number,
+    ms?: number,
+  );
 
-  constructor(y?: number, m?: number, d?: number, h?: number, M?: number, s?: number, ms?: number) {
+  constructor(
+    y?: number,
+    m?: number,
+    d?: number,
+    h?: number,
+    M?: number,
+    s?: number,
+    ms?: number,
+  ) {
     super();
 
     let date;
@@ -25,7 +41,7 @@ const MockDate = class Date extends RealDate {
         break;
 
       default:
-        d = typeof d === 'undefined' ? 1 : d;
+        d = typeof d === "undefined" ? 1 : d;
         h = h || 0;
         M = M || 0;
         s = s || 0;
@@ -44,22 +60,22 @@ const MockDate = class Date extends RealDate {
 
 MockDate.UTC = RealDate.UTC;
 
-MockDate.now = function() {
+MockDate.now = function () {
   return new MockDate().valueOf();
 };
 
-MockDate.parse = function(dateString) {
+MockDate.parse = function (dateString) {
   return RealDate.parse(dateString);
 };
 
-MockDate.toString = function() {
+MockDate.toString = function () {
   return RealDate.toString();
 };
 
 export function set(date: string | number | Date): void {
-  var dateObj = new Date(date.valueOf())
+  var dateObj = new Date(date.valueOf());
   if (isNaN(dateObj.getTime())) {
-    throw new TypeError('mockdate: The time set is an invalid date: ' + date)
+    throw new TypeError("mockdate: The time set is an invalid date: " + date);
   }
 
   // @ts-ignore
@@ -75,4 +91,4 @@ export function reset(): void {
 export default {
   set,
   reset,
-}
+};

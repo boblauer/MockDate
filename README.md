@@ -1,35 +1,38 @@
-MockDate
-========
+# MockDate
 
 A JavaScript Mock Date object that can be used to change when "now" is.
 
-## Installation ##
+## Installation
+
 `npm install mockdate --save-dev`
 
-## Environment Support ##
+## Environment Support
+
 MockDate has been tested in Node, IE9+, Chrome, Firefox, and Opera.
 
-## Usage ##
+## Usage
+
 ```javascript
-import MockDate from 'mockdate'
+import MockDate from "mockdate";
 ```
 
-## API ##
+## API
+
 ```javascript;
 MockDate.set(date)
 ```
 
-#### __date__
+#### **date**
 
-__date__: __`Object`__
+**date**: **`Object`**
 
-The `Date` to be returned when no parameters are passed to `new Date()`.  Supports any object that has a `.valueOf` method that returns a value that can be passed to `new Date()`.
+The `Date` to be returned when no parameters are passed to `new Date()`. Supports any object that has a `.valueOf` method that returns a value that can be passed to `new Date()`.
 
-__date__: __`String`__
+**date**: **`String`**
 
 The string representation of the date which is passed to the `new Date()` constructor. This creates the `Date` to be returned when no parameters are passed to `new Date()`.
 
-__date__: __`Number`__
+**date**: **`Number`**
 
 The millisecond representation of the `Date` to be returned when no parameters are passed to `new Date()`.
 
@@ -39,30 +42,32 @@ MockDate.reset();
 
 Will restore the original `Date` object back to the native implementation.
 
-## Example ##
+## Example
+
 ```javascript
-MockDate.set('2000-11-22');
+MockDate.set("2000-11-22");
 
-new Date().toString() // "Tue Nov 21 2000 18:00:00 GMT-0600 (CST)"
+new Date().toString(); // "Tue Nov 21 2000 18:00:00 GMT-0600 (CST)"
 
-MockDate.set('1/30/2000');
+MockDate.set("1/30/2000");
 
-new Date().toString() // "Sun Jan 30 2000 00:00:00 GMT-0600 (CST)"
+new Date().toString(); // "Sun Jan 30 2000 00:00:00 GMT-0600 (CST)"
 
-MockDate.set(new Date('2/20/2000'));
+MockDate.set(new Date("2/20/2000"));
 
-new Date().toString() // "Sun Feb 20 2000 00:00:00 GMT-0600 (CST)"
+new Date().toString(); // "Sun Feb 20 2000 00:00:00 GMT-0600 (CST)"
 
-MockDate.set(moment('3/30/2000').toDate()); // using momentjs
+MockDate.set(moment("3/30/2000").toDate()); // using momentjs
 
-new Date().toString() // "Thu Mar 30 2000 00:00:00 GMT-0600 (CST)"
+new Date().toString(); // "Thu Mar 30 2000 00:00:00 GMT-0600 (CST)"
 
 MockDate.reset();
 
-new Date().toString() // "Mon Mar 17 2014 18:08:44 GMT-0500 (CDT)"
+new Date().toString(); // "Mon Mar 17 2014 18:08:44 GMT-0500 (CDT)"
 ```
 
-## Test ##
+## Test
+
 ```javascript
 npm test
 ```
