@@ -6,9 +6,9 @@
   "types": "lib/mockdate.d.ts",
   "type": "module",
   "devDependencies": {
+    "@rollup/plugin-typescript": "^12.1.2",
     "mocha": "^11.5.0",
     "rollup": "^4.41.1",
-    "rollup-plugin-typescript2": "^0.36.0",
     "should": "13.2.3",
     "typescript": "^5.8.3"
   },
